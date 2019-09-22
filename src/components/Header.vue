@@ -1,7 +1,8 @@
 <template>
   <div :class="{'no-login':!isLogin,'login':isLogin}">
     <template v-if="!isLogin">
-      <h1>LET'S SHARE</h1>
+      <router-link tag="h1"
+                   to="/">LET'S SHARE</router-link>
       <P>精品博客汇聚</P>
       <div>
         <router-link to="/login">
@@ -16,10 +17,13 @@
     <template v-if="isLogin">
       <router-link to="/"
                    tag="h1"
-                   class="tit-islogin">LET'S SHARE</router-link>
-      <router-link to="Create"
+                   class="tit-islogin">LET'S SHARE
+      </router-link>
+      <!-- 创建文章 -->
+      <router-link to="/create"
                    tag="i"
-                   class=" el-icon-plus"></router-link>
+                   class="el-icon-plus">
+      </router-link>
       <div class="avatar">
         <img :src="user.avatar"
              alt=""
@@ -59,7 +63,8 @@ export default {
     ]),
     onLogout () {
       this.logout().then(() => {
-        this.$router.path.push({ path: '/' })
+        this.$message.success('注销成功')
+        this.$router.push({ path: '/' })
       })
     }
   }
@@ -105,7 +110,7 @@ export default {
     font-family: Monaco, Consolas, monospace;
     font-weight: bold;
     font-size: 300%;
-    border-right: 5px solid;
+    // border-right: 5px solid;
     width: 11ch;
     grid-column: 1 / 2;
     align-self: center;
@@ -114,7 +119,9 @@ export default {
     overflow: hidden;
     white-space: nowrap;
     transiton: all 1.5s ease-out;
-    animation: typing 2s steps(11, end), blink-caret 0.5s step-end infinite alternate;
+    animation: typing 1s steps(11, end);
+    cursor: pointer;
+    // blink-caret 0.5s step-end infinite alternate;
   }
 
   p {

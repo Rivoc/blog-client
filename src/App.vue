@@ -4,7 +4,6 @@
     <div class="mask"
          v-if="loading"><i class="el-icon-loading"></i> </div>
     <div id="main">
-
       <router-view />
     </div>
     <Footer id="footer"></Footer>
@@ -23,7 +22,7 @@ export default {
   },
   data () {
     return {
-      loading: true
+      loading: false
     }
   },
   mounted () {
@@ -76,8 +75,8 @@ export default {
 
   #footer {
     grid-area: footer;
-    background-color: pink;
-    padding: 0 12%;
+    background-color: #d7d7d7;
+    padding: 1% 12%;
   }
 }
 </style>

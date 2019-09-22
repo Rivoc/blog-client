@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     onPatch () {
-      blog.updateBlog({ blogId: this.$route.params.blogId }, { title: this.title, content: this.content, description: this.content, atIndex: this.atIndex }).then(res => {
+      blog.updateBlog({ blogId: this.$route.params.blogId }, { title: this.title, content: this.content, description: this.description, atIndex: this.atIndex }).then(res => {
         this.$message({
           message: '修改成功！',
           type: 'success'

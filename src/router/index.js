@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../store'
+import { Message } from 'element-ui'
 // import Home from '../pages/home/Home'
 // import Detail from '../pages/detail/Detail'
 // import Login from '../pages/login/Login'
@@ -61,6 +62,7 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     store.dispatch('checkLogin').then(isLogin => {
       if (!isLogin) {
+        Message.error('请先登录哦')
         next({
           path: '/login',
           query: { redirect: to.fullPath }// 把要跳转的地址作为参数传到下一步

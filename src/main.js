@@ -54,3 +54,11 @@ Vue.filter('getMonth', function (str) {
   var date = new Date(str)
   return date.getMonth() + 1 + '月'
 })
+Vue.filter('format2', function (str) {
+  if (!str) return ''
+  var date = new Date(str)
+  var year = date.getFullYear()
+  var month = date.getMonth() + 1
+  var day = date.getDate()
+  return year + '/' + month + '/' + day
+})

@@ -48,21 +48,27 @@ export default {
   },
   methods: {
     handleCurrentChange (page) {
+      this.blogList = ''
+      this.bus.$emit('changeLoading', true)
+      this.currentPage = page
       blog.getBlogs({ page: page, userId: this.$route.params.userId }).then(res => {
         this.blogList = res.data
         this.total = res.total
+        this.bus.$emit('changeLoading', false)
         // 向路由地址传递页码
         this.$router.push({ path: `/user/${this.$route.params.userId}`, query: { page: page } })
       })
     }
   },
   created () {
+    this.bus.$emit('changeLoading', true)
     this.currentPage = parseInt(this.$route.query.page) || 1
     blog.getBlogs({ page: this.currentPage, userId: this.$route.params.userId }).then(res => {
       console.log('user页面的res')
       console.log(res)
       this.blogList = res.data
       this.total = res.total
+      this.bus.$emit('changeLoading', false)
     })
   }
 }

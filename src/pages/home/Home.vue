@@ -16,23 +16,25 @@
             </div>
             <figcaption class="author-name">{{item.user.username}}</figcaption>
           </router-link>
+          <!-- 博客标题、描述 -->
           <router-link :to="'/detail/'+item.id"
                        tag="div">
             <div class="title">
-              <h3>{{item.title}}</h3><span class="create-time">{{item.createdAt|formatDate}}</span>
+              <h3>{{item.title}}</h3><span class="create-time">{{item.createdAt|formatDate}}</span><span class="updated-time">最后编辑：{{item.updatedAt|format2}}</span>
             </div>
 
             <div class="list-detail">{{item.description}}</div>
           </router-link>
         </div>
       </section>
-      <section>
+      <section class="pageWrap">
         <el-pagination :page-size="10"
                        :pager-count="5"
                        layout="prev, pager, next"
                        :total="total"
                        :current-page="currentPage"
-                       @current-change="handleCurrentChange">
+                       @current-change="handleCurrentChange"
+                       class="pagination">
         </el-pagination>
       </section>
     </div>
@@ -112,6 +114,11 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
+.pageWrap {
+  display: flex;
+  justify-content: center;
+}
+
 .cell {
   display: grid;
   grid-template-columns: 9% auto;
@@ -155,7 +162,7 @@ export default {
       display: inline-block;
     }
 
-    .create-time {
+    .create-time, .updated-time {
       margin-left: 5px;
       font-size: 12px;
       color: #999;
