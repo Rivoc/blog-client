@@ -55,7 +55,6 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
-@import '../../assets/styles/markdown.css';
 
 .post-header {
   display: grid;
